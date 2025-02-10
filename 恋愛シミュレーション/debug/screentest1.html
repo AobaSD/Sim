@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<title>
+			シチュエーション：「？？？」
+		</title>
+		
+		<style>
+			body {
+				text-align: center;
+				font-family: Arial, sans-serif;
+				margin: 50px;
+			}
+
+			img {
+				max-width: 300px;
+				height: auto;
+				margin: 20px;
+			}
+
+			button {
+				display: block;
+				padding: 15px 30px;
+				font-size: 16px;
+				background-color: #007bff;
+				color: white;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				margin: 10px auto;
+				width: 700px;
+			}
+
+			button:hover {
+                background-color: #0056b3;
+            }
+
+			button.disabled {
+				background-color: #ccc;
+				cursor: not-allowed;
+			}
+
+			#next-button {
+				display: none;
+				background-color: #28a745;
+			}
+
+			#next-button:hover {
+				background-color: #218838;
+			}
+
+            footer {
+                margin-top: 50px;
+                padding: 10px;
+                background-color: #f8f9fa;
+                border-top: 1px solid #ccc;
+                position: fixed;
+                bottom: 0;
+				left: 0;
+                width: 100%;
+                font-size: 16px;
+            }
+
+		</style>
+	</head>
+
+	<body>
+    	<h1>
+			デスクトップ版
+		</h1>
+
+    	<p id="question-text">
+			問題文
+		</p>
+
+    	<img id="question-image" src="before1.jpg" alt="質問1の画像">
+    
+		<button id="optionA" onclick="handleChoice(0, 0, 0, '選択肢Aを選びました！', 'image/afterA1.jpg', 'sound/choiceA1.mp3')">
+			選択肢A
+		</button>
+    	
+		<button id="optionB" onclick="handleChoice(5, 0, 0, '選択肢Bを選びました！', 'image/afterB1.jpg', 'sound/choiceB1.mp3')">
+			選択肢B
+		</button>
+    	
+		<button id="optionC" onclick="handleChoice(10, 10, 10, '選択肢Cを選びました！', 'image/afterC1.jpg', 'sound/choiceC1.mp3')">
+			選択肢C
+		</button>
+    	
+		<!-- 次へと進むためのボタン -->
+		<button id="next-button" onclick="goToNextScreen('screen2.html')">
+			次に進む
+		</button>
+
+        <footer id="footer">
+            現在のポイント: 積極度[ 0 ] | 好感度[ 0 ] | 信頼度[ 0 ]
+        </footer>
+
+    	<script>
+
+            function updateFooter()
+                {
+                // ローカルストレージからポイントを取得
+                    const points = JSON.parse(localStorage.getItem('points')) || { A: 0, B: 0, C: 0 };
+
+                // フッターのポイントを更新
+                    document.getElementById('footer').innerText = 　`現在のポイント: 積極度[ ${points.A} ] | 好感度[ ${points.B} ] | 信頼値[ ${points.C} ]`;
+                }
+
+
+			function handleChoice(aPoints, bPoints, cPoints, message, newImage)
+				{
+				// ローカルストレージからポイントを取得
+					const points = JSON.parse(localStorage.getItem('points')) || { A: 0, B: 0, C: 0 };
+
+				// 各ポイントを加算
+					points.A += aPoints;
+					points.B += bPoints;
+					points.C += cPoints;
+
+				// ポイントを保存
+					localStorage.setItem('points', JSON.stringify(points));
+
+				// 画面を更新（質問文と画像を変更）
+					document.getElementById('question-text').innerText = message;
+					document.getElementById('question-image').src = newImage;
+
+				// 全ての選択肢ボタンを無効化
+					document.getElementById('optionA').classList.add('disabled');
+					document.getElementById('optionA').disabled = true;
+					document.getElementById('optionB').classList.add('disabled');
+					document.getElementById('optionB').disabled = true;
+					document.getElementById('optionC').classList.add('disabled');
+					document.getElementById('optionC').disabled = true;
+
+				// 次へ進むボタンを表示
+					document.getElementById('next-button').style.display = 'block';
+
+                // フッターを更新
+                    updateFooter();
+
+				}
+
+			function goToNextScreen(nextPage)
+				{
+					location.href = nextPage;
+				}
+
+		// ページ読み込み時にフッターを初期化
+			document.addEventListener('DOMContentLoaded', updateFooter);
+
+    	</script>
+	</body>
+</html>

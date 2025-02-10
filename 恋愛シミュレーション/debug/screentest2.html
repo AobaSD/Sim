@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>シチュエーション：「？？？？」</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 6vw;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 4vw;
+            padding: 10px;
+            max-width: 90%;
+        }
+
+        img {
+            max-width: 90%;
+            height: auto;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 1.2em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 8px 0;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #next-button {
+            display: none;
+            background-color: #28a745;
+        }
+
+        #next-button:hover {
+            background-color: #218838;
+        }
+
+        .footer-container {
+            width: 100%;
+            max-width: 500px;
+            margin-top: auto;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            background-color: white;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>モバイル版</h1>
+
+    <p id="question-text">文字文字文字文字文字文字文字</p>
+
+    <img id="question-image" src="before1.jpg" alt="質問1の画像">
+
+    <div class="button-container">
+        <button id="optionA" onclick="handleChoice(0, 0, 0, '選択肢Aを選びました！', 'image/afterA1.jpg')">
+            選択肢A
+        </button>
+
+        <button id="optionB" onclick="handleChoice(5, 0, 0, '選択肢Bを選びました！', 'image/afterB1.jpg')">
+            選択肢B
+        </button>
+
+        <button id="optionC" onclick="handleChoice(10, 10, 10, '選択肢Cを選びました！', 'image/afterC1.jpg')">
+            選択肢B
+        </button>
+
+        <button id="next-button" onclick="goToNextScreen('screen2.html')">
+            次のアクション
+        </button>
+    </div>
+
+    <div class="footer-container" id="footer">
+        現在のポイント: 積極度[ 0 ] | 好感度[ 0 ] | 信頼度[ 0 ]
+    </div>
+
+    <script>
+        function updateFooter() {
+            const points = JSON.parse(localStorage.getItem('points')) || { A: 0, B: 0, C: 0 };
+            document.getElementById('footer').innerText = `現在のポイント: 積極度[ ${points.A} ] | 好感度[ ${points.B} ] | 信頼度[ ${points.C} ]`;
+        }
+
+        function handleChoice(aPoints, bPoints, cPoints, message, newImage) {
+            const points = JSON.parse(localStorage.getItem('points')) || { A: 0, B: 0, C: 0 };
+            points.A += aPoints;
+            points.B += bPoints;
+            points.C += cPoints;
+            localStorage.setItem('points', JSON.stringify(points));
+
+            document.getElementById('question-text').innerText = message;
+            document.getElementById('question-image').src = newImage;
+
+            document.getElementById('optionA').classList.add('disabled');
+            document.getElementById('optionA').disabled = true;
+            document.getElementById('optionB').classList.add('disabled');
+            document.getElementById('optionB').disabled = true;
+            document.getElementById('optionC').classList.add('disabled');
+            document.getElementById('optionC').disabled = true;
+
+            document.getElementById('next-button').style.display = 'block';
+
+            updateFooter();
+        }
+
+        function goToNextScreen(nextPage) {
+            location.href = nextPage;
+        }
+
+        document.addEventListener('DOMContentLoaded', updateFooter);
+    </script>
+
+</body>
+</html>

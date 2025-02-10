@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<title>
+			シチュエーション：「」
+		</title>
+		
+		<style>
+			body {
+				text-align: center;
+				font-family: Arial, sans-serif;
+				margin: 50px;
+			}
+
+            /* ヘッダーのスタイル */
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #bf4b43;
+                color: white;
+                padding: 10px 15px;
+                font-size: 18px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                box-sizing: border-box;
+            }
+
+            .header-title {
+                font-weight: bold;
+                flex: 1;
+                text-align: left;
+                padding-left: 50px;
+            }
+
+            .header-section {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 8px;
+                flex-shrink: 0;
+                margin-right: 5px;
+            }
+
+            .restart-button {
+				background-color: #fc7b03;
+            	color: white;
+            	border: none;
+            	padding: 6px 12px;
+				border-radius: 5px;
+				font-size: 14px;
+				cursor: pointer;
+				white-space: nowrap;
+				display: inline-block;
+				width: auto;
+				margin: 0;
+            }
+
+            .restart-button:hover {
+                background-color: #c96202;
+            }
+
+            h1 {
+                margin-top: 90px;
+            }
+
+			img {
+				max-width: 300px;
+				height: auto;
+				margin: 20px;
+			}
+
+			button {
+				display: block;
+				padding: 15px 30px;
+				font-size: 16px;
+				background-color: #007bff;
+				color: white;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				margin: 10px auto;
+				width: 700px;
+			}
+
+			button:hover {
+                background-color: #0056b3;
+            }
+
+			button.disabled {
+				background-color: #ccc;
+				cursor: not-allowed;
+			}
+
+			#next-button {
+				display: none;
+				background-color: #28a745;
+			}
+
+			#next-button:hover {
+				background-color: #218838;
+			}
+
+            footer {
+                margin-top: 50px;
+                padding: 10px;
+                background-color: #f8f9fa;
+                border-top: 1px solid #ccc;
+                position: fixed;
+                bottom: 0;
+				left: 0;
+                width: 100%;
+                font-size: 16px;
+            }
+
+			/* ハンバーガーメニューのスタイル */
+
+            /* 隠しチェックボックス（ハンバーガー部分） */
+            #menu-toggle {
+                display: none;
+            }
+
+            /* ハンバーガーメニューのボタン */
+            .hamburger {
+                position: fixed;
+                top: 9px;
+                left: 20px;
+                z-index: 1003;
+                display: block;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+            }
+
+            .hamburger span {
+                display: block;
+                width: 100%;
+                height: 4px;
+                background: white;
+                margin: 5px 0;
+                transition: background 0.3s;
+            }
+
+            /* メニューの制御 */
+            /* メニュー設定 */
+            .side-menu {
+                position: fixed;
+                top: 0;
+                left: -10px;
+                width: 250px;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                padding: 20px;
+                transform: translateX(-100%);
+                transition: transform 0.4s ease-in-out; /* スライド制御 */
+                z-index: 1002;
+            }
+
+            /* メニューを開くとき（チェックボックスがON） */
+            #menu-toggle:checked ~ .side-menu {
+                transform: translateX(0);
+                animation: poyon 0.5s ease-out;
+            }
+
+            /* ぽよんアニメーション */
+            @keyframes poyon {
+                0% {
+                    transform: translateX(-100%);
+                }
+                60% {
+                    transform: translateX(10px); /* 少し右に出る */
+                }
+                80% {
+                    transform: translateX(-5px); /* 少し左に戻る */
+                }
+                100% {
+                    transform: translateX(0);
+                }
+            }
+
+            /* メニューを閉じるとき（チェックボックスがOFF） */
+            #menu-toggle:not(:checked) ~ .side-menu {
+                transform: translateX(-100%);
+            }
+
+            /* オーバーレイ */
+            /* オーバーレイの初期状態 */
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.4s ease-out, visibility 0s linear 0.4s; /* visibility を 0.4s 遅らせる */
+                z-index: 1001;
+                cursor: pointer;
+            }
+
+            /* メニューが開いたとき（オーバーレイをフェードイン） */
+            #menu-toggle:checked ~ .overlay {
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 0.4s ease-out, visibility 0s linear 0s; /* visibility は即適用 */
+            }
+
+            /* メニューが閉じるとき（オーバーレイをフェードアウト） */
+            #menu-toggle:not(:checked) ~ .overlay {
+                opacity: 0;
+                transition: opacity 0.4s ease-in, visibility 0s linear 0.4s; /* visibility を 0.4s 遅らせる */
+                visibility: hidden;
+            }
+
+            /* visibilityを遅らせる理由：opacityが完了してからoverlayを解除する必要がある。 */
+		</style>
+	</head>
+
+	<body>
+		<!-- ハンバーガーメニュー -->
+        <!-- メニューのチェックボックス -->
+        <input type="checkbox" id="menu-toggle">
+
+        <!-- ハンバーガーメニューのボタン -->
+        <label class="hamburger" for="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <!-- メニュー画面 -->
+        <nav class="side-menu">
+            <p style="font-size: 25px; font-weight: bold; color: white; margin-bottom: 50px;">
+                メニュー
+            </p>
+
+            <p>
+                <a href="characters.html" style="font-size: 20px; color: white; text-decoration: none;">
+                    登場人物
+                </a>
+            </p>
+
+            <p>
+                <a href="introduction.html" style="font-size: 20px; color: white; text-decoration: none;">
+                    説明
+                </a>
+            </p>
+
+            <p>
+                <a href="details.html" style="font-size: 20px; color: white; text-decoration: none;">
+                    課題詳細
+                </a>
+            </p>
+        </nav>
+
+        <!-- オーバーレイ -->
+        <label class="overlay" for="menu-toggle"></label>
+
+		<header>
+            <div class="header-title">
+                <a href="title.html" style="color: white; text-decoration: none;">
+                    情報課題 デスクトップ版
+                </a>
+            </div>
+
+            <div class="header-section">
+                <span>
+                    進行度：🟩🟩🟩🟩🟩🟩🟩⬛️
+                </span>
+
+                <button class="restart-button" onclick="resetGame()">
+                    やり直す
+                </button>
+            </div>
+        </header>
+
+    	<h1>
+			第七章「」
+		</h1>
+
+    	<p id="question-text">
+			質問7の本文
+		</p>
+
+    	<img id="question-image" src="before7.jpg" alt="質問7の画像">
+    
+		<button id="optionA" onclick="handleChoice(10, 20, 30, '選択肢Aを選びました！', 'image/afterA7.jpg', 'sound/choiceA7.mp3')">
+			選択肢A
+		</button>
+    	
+		<button id="optionB" onclick="handleChoice(20, 30, 40, '選択肢Bを選びました！', 'image/afterB7.jpg', 'sound/choiceB7.mp3')">
+			選択肢B
+		</button>
+    	
+		<button id="optionC" onclick="handleChoice(30, 40, 50, '選択肢Cを選びました！', 'image/afterC7.jpg', 'sound/choiceC7.mp3')">
+			選択肢C
+		</button>
+    	
+		<!-- 次へと進むためのボタン -->
+		<button id="next-button" onclick="goToNextScreen('screen8.html')">
+			次へ進む
+		</button>
+
+        <footer id="footer">
+            現在のポイント: 積極度[ 0 ] | 好感度[ 0 ] | 信頼度[ 0 ]
+        </footer>
+
+    	<script>
+
+            function updateFooter()
+                {
+                // ローカルストレージからポイントを取得
+                    const points = JSON.parse(localStorage.getItem('points')) || { A: 0, B: 0, C: 0 };
+
+                // フッターのポイントを更新
+                    document.getElementById('footer').innerText = 　`現在のポイント: 積極度[ ${points.A} ] | 好感度[ ${points.B} ] | 信頼度[ ${points.C} ]`;
+                }
+
+
+			function handleChoice(aPoints, bPoints, cPoints, message, newImage)
+				{
+				// ローカルストレージからポイントを取得
+					const points = JSON.parse(localStorage.getItem('points')) || { A: 0, B: 0, C: 0 };
+
+				// 各ポイントを加算
+					points.A += aPoints;
+					points.B += bPoints;
+					points.C += cPoints;
+
+				// ポイントを保存
+					localStorage.setItem('points', JSON.stringify(points));
+
+				// 画面を更新（質問文と画像を変更）
+					document.getElementById('question-text').innerText = message;
+					document.getElementById('question-image').src = newImage;
+
+				// 全ての選択肢ボタンを無効化
+					document.getElementById('optionA').classList.add('disabled');
+					document.getElementById('optionA').disabled = true;
+					document.getElementById('optionB').classList.add('disabled');
+					document.getElementById('optionB').disabled = true;
+					document.getElementById('optionC').classList.add('disabled');
+					document.getElementById('optionC').disabled = true;
+
+				// 次へ進むボタンを表示
+					document.getElementById('next-button').style.display = 'block';
+
+                // フッターを更新
+                    updateFooter();
+
+				}
+
+			function goToNextScreen(nextPage)
+				{
+					location.href = nextPage;
+				}
+
+		// ページ読み込み時にフッターを初期化
+			document.addEventListener('DOMContentLoaded', updateFooter);
+
+            function resetGame() {
+                location.href = '../src/index.html';
+            }
+
+    	</script>
+	</body>
+</html>
