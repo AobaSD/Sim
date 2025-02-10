@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+    <style>
+        body {
+            background-color: white
+        }
+
+        p {
+            color: red;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+    <head>
+        <meta charset="UTF-8">
+
+        <title>
+            リダイレクト中...
+        </title>
+
+        <script>
+            function redirect() {
+                // ユーザーエージェントを小文字で取得
+                const userAgent = navigator.userAgent.toLowerCase();
+
+                // モバイル版へリダイレクト
+                if (/iphone|ipod|android/.test(userAgent)) {
+                    location.href = '../mobile/title.html';
+                } 
+                
+                else {
+                // デスクトップ版へリダイレクト
+                location.href = '../desktop/title.html';
+                }
+            }
+
+            // ページ読み込み完了時に redirect() を実行
+            window.addEventListener('load', redirect);
+        </script>
+
+    </head>
+
+    <body>
+        <p>
+            Error!<br>
+            リダイレクトに失敗しました。ページを再読み込みしてみてください！<br><br>
+            Q. ブラウザは最新ですか？<br>
+            Q. リダイレクトを拒否していませんか？<br>
+            Q. 必要なフォルダ(src, sound, mobile, desktop, development, debug)は読み込まれていますか？
+        </p>
+    </body>
+
+</html>
