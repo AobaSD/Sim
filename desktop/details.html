@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-
     <head>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>
-            情報課題 - 汎用ページ
+            情報課題 - 説明
         </title>
 
         <style>
@@ -16,7 +16,7 @@
                 margin: 50px;
             }
 
-            /* ヘッダーのスタイル */
+            /* ヘッダー */
             header {
                 display: flex;
                 justify-content: space-between;
@@ -50,17 +50,17 @@
             }
 
             .restart-button {
-				background-color: #fc7b03;
-            	color: white;
-            	border: none;
-            	padding: 6px 12px;
-				border-radius: 5px;
-				font-size: 14px;
-				cursor: pointer;
-				white-space: nowrap;
-				display: inline-block;
-				width: auto;
-				margin: 0;
+                background-color: #fc7b03;
+                color: white;
+                border: none;
+                padding: 6px 12px;
+                border-radius: 5px;
+                font-size: 14px;
+                cursor: pointer;
+                white-space: nowrap;
+                display: inline-block;
+                width: auto;
+                margin: 0;
             }
 
             .restart-button:hover {
@@ -71,6 +71,7 @@
                 margin-top: 90px;
             }
 
+            /* コンテンツエリア */
             .container {
                 display: flex;
                 flex-direction: column;
@@ -79,6 +80,7 @@
                 margin-top: 20px;
             }
 
+            /* フッターのスタイル */
             footer {
                 margin-top: 50px;
                 padding: 10px;
@@ -92,13 +94,10 @@
             }
 
             /* ハンバーガーメニューのスタイル */
-
-            /* 隠しチェックボックス（ハンバーガー部分） */
             #menu-toggle {
                 display: none;
             }
 
-            /* ハンバーガーメニューのボタン */
             .hamburger {
                 position: fixed;
                 top: 9px;
@@ -119,8 +118,6 @@
                 transition: background 0.3s;
             }
 
-            /* メニューの制御 */
-            /* メニュー設定 */
             .side-menu {
                 position: fixed;
                 top: 0;
@@ -130,39 +127,34 @@
                 background: rgba(0, 0, 0, 0.7);
                 padding: 20px;
                 transform: translateX(-100%);
-                transition: transform 0.4s ease-in-out; /* スライド制御 */
+                transition: transform 0.4s ease-in-out;
                 z-index: 1002;
             }
 
-            /* メニューを開くとき（チェックボックスがON） */
             #menu-toggle:checked ~ .side-menu {
                 transform: translateX(0);
                 animation: poyon 0.5s ease-out;
             }
 
-            /* ぽよんアニメーション */
             @keyframes poyon {
                 0% {
                     transform: translateX(-100%);
                 }
                 60% {
-                    transform: translateX(10px); /* 少し右に出る */
+                    transform: translateX(10px);
                 }
                 80% {
-                    transform: translateX(-5px); /* 少し左に戻る */
+                    transform: translateX(-5px);
                 }
                 100% {
                     transform: translateX(0);
                 }
             }
 
-            /* メニューを閉じるとき（チェックボックスがOFF） */
             #menu-toggle:not(:checked) ~ .side-menu {
                 transform: translateX(-100%);
             }
 
-            /* オーバーレイ */
-            /* オーバーレイの初期状態 */
             .overlay {
                 position: fixed;
                 top: 0;
@@ -172,42 +164,35 @@
                 background: rgba(0, 0, 0, 0.5);
                 opacity: 0;
                 visibility: hidden;
-                transition: opacity 0.4s ease-out, visibility 0s linear 0.4s; /* visibility を 0.4s 遅らせる */
+                transition: opacity 0.4s ease-out, visibility 0s linear 0.4s;
                 z-index: 1001;
                 cursor: pointer;
             }
 
-            /* メニューが開いたとき（オーバーレイをフェードイン） */
             #menu-toggle:checked ~ .overlay {
                 opacity: 1;
                 visibility: visible;
-                transition: opacity 0.4s ease-out, visibility 0s linear 0s; /* visibility は即適用 */
+                transition: opacity 0.4s ease-out, visibility 0s linear 0s;
             }
 
-            /* メニューが閉じるとき（オーバーレイをフェードアウト） */
             #menu-toggle:not(:checked) ~ .overlay {
                 opacity: 0;
-                transition: opacity 0.4s ease-in, visibility 0s linear 0.4s; /* visibility を 0.4s 遅らせる */
+                transition: opacity 0.4s ease-in, visibility 0s linear 0.4s;
                 visibility: hidden;
             }
-
-            /* visibilityを遅らせる理由：opacityが完了してからoverlayを解除する必要がある。 */
         </style>
     </head>
 
     <body>
-
         <!-- ハンバーガーメニュー -->
-        <!-- メニューのチェックボックス -->
         <input type="checkbox" id="menu-toggle">
 
-        <!-- ハンバーガーメニューのボタン -->
         <label class="hamburger" for="menu-toggle">
             <span></span>
             <span></span>
             <span></span>
         </label>
-        <!-- メニュー画面 -->
+
         <nav class="side-menu">
             <p style="font-size: 25px; font-weight: bold; color: white; margin-bottom: 50px;">
                 メニュー
@@ -232,10 +217,10 @@
             </p>
         </nav>
 
-        <!-- オーバーレイ -->
-        <label class="overlay" for="menu-toggle"></label>
+        <label class="overlay" for="menu-toggle">
 
-
+        </label>
+        
         <header>
             <div class="header-title">
                 <a href="title.html" style="color: white; text-decoration: none;">
@@ -245,7 +230,7 @@
 
             <div class="header-section">
                 <span>
-                    汎用ページ
+                    説明
                 </span>
 
                 <button class="restart-button" onclick="resetGame()">
@@ -253,7 +238,7 @@
                 </button>
             </div>
         </header>
-
+        
         <h1>
             タイトル
         </h1>
@@ -261,22 +246,22 @@
         <p>
             説明
         </p>
-
+        
         <div class="container">
-
+            <!-- 汎用ページとして利用するコンテンツをここに配置 -->
+            <p>
+                ここにコンテンツを
+            </p>
         </div>
-
+        
         <footer id="footer">
             現在のポイント: 積極度[ 0 ] | 好感度[ 0 ] | 信頼度[ 0 ]
         </footer>
-
+        
         <script>
-            
-
-
-
+            function resetGame() {
+                location.href = '../src/index.html';
+            }
         </script>
-
     </body>
-
 </html>
