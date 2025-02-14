@@ -691,9 +691,10 @@
             
             // 次の画面へ
             function goToNextScreen(nextScreen) {
+                // 次へ進むボタンを押したときにポイントを必ず保存
+                localStorage.setItem("points", JSON.stringify(points));
                 if (nextScreen === "result") {
                     location.href = "result.html";
-
                 } else {
                     renderScreen(Number(nextScreen));
                 }

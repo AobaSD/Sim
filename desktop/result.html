@@ -301,122 +301,126 @@
         </audio>
         
         <script>
-            document.addEventListener(
-                    "DOMContentLoaded", () => 
-                        {
-                            const points = JSON.parse(localStorage.getItem('points')) || { A: 0, B: 0, C: 0 };
-                            const resultElement = document.getElementById('result');
-                            const soundElement = document.getElementById('resultSound');
-                            const pointsElement = document.getElementById('points');
+            document.addEventListener("DOMContentLoaded", () => {
+                // localStorageから"points"キーの値を取得
+                let storedPoints = localStorage.getItem("points");
+                if (!storedPoints) {
+                    // 値が存在しない場合は、初期値をセット
+                    storedPoints = JSON.stringify({ A: 0, B: 0, C: 0 });
+                    localStorage.setItem("points", storedPoints);
+                }
+                    const points = JSON.parse(localStorage.getItem('points')) || { A: 0, B: 0, C: 0 };
+                    const resultElement = document.getElementById('result');
+                    const soundElement = document.getElementById('resultSound');
+                    const pointsElement = document.getElementById('points');
 
-                            // ポイント表示（HTML整形）
-                            pointsElement.innerHTML += 
-                            `
-                                <p>
-                                    積極度 (A): ${points.A}
-                                </p>
+                    // ポイント表示（HTML整形）
+                    pointsElement.innerHTML += 
+                     `
+                        <p>
+                            積極度 (A): ${points.A}
+                        </p>
 
-                                <p>
+                        <p>
                                     好感度 (B): ${points.B}
-                                </p>
+                        </p>
 
-                                <p>
-                                    信頼度 (C): ${points.C}
-                                </p>
-                            `;
+                        <p>
+                            信頼度 (C): ${points.C}
+                        </p>
+                    `;
 
-                            const results = {
-                                "000": { 
-                                    text: "特別な結果: すべての数値が0です！",
-                                    image: "image/special_zero.jpg", 
-                                    sound: "sound/special_zero.mp3" 
-                                },
+                    const results = {
+                        "000": { 
+                            text: "特別な結果: すべての数値が0です！",
+                            image: "image/special_zero.jpg", 
+                            sound: "sound/special_zero.mp3" 
+                        },
 
-                                "100100100": { 
-                                    text: "特別な結果: すべての数値が100です！", 
-                                    image: "image/special_max.jpg", 
-                                    sound: "sound/special_max.mp3" 
-                                },
+                        "100100100": { 
+                            text: "特別な結果: すべての数値が100です！", 
+                            image: "image/special_max.jpg", 
+                            sound: "sound/special_max.mp3" 
+                        },
 
-                                "lll": { 
-                                    text: "結果1: すべての数値が70未満です。", 
-                                    image: "image/result1.jpg", 
-                                    sound: "sound/result1.mp3" 
-                                },
+                        "lll": { 
+                            text: "結果1: すべての数値が70未満です。", 
+                            image: "image/result1.jpg", 
+                            sound: "sound/result1.mp3" 
+                        },
 
-                                "hll": { 
-                                    text: "結果2: Aが70以上で、BとCが70未満です。", 
-                                    image: "image/result2.jpg", 
-                                    sound: "sound/result2.mp3" 
-                                },
+                        "hll": { 
+                            text: "結果2: Aが70以上で、BとCが70未満です。", 
+                            image: "image/result2.jpg", 
+                            sound: "sound/result2.mp3" 
+                        },
 
-                                "hhl": { 
-                                    text: "結果3: AとBが70以上で、Cが70未満です。", 
-                                    image: "image/result3.jpg", 
-                                    sound: "sound/result3.mp3" 
-                                },
+                        "hhl": { 
+                            text: "結果3: AとBが70以上で、Cが70未満です。", 
+                            image: "image/result3.jpg", 
+                            sound: "sound/result3.mp3" 
+                        },
 
-                                "hlh": { 
-                                    text: "結果4: AとCが70以上で、Bが70未満です。", 
-                                    image: "image/result4.jpg", 
-                                    sound:"sound/result4.mp3" 
-                                },
+                        "hlh": { 
+                            text: "結果4: AとCが70以上で、Bが70未満です。", 
+                            image: "image/result4.jpg", 
+                            sound:"sound/result4.mp3" 
+                        },
 
-                                "lhl": { 
-                                    text: "結果5: Bが70以上で、AとCが70未満です。", 
-                                    image: "image/result5.jpg", 
-                                    sound: "sound/result5.mp3" 
-                                },
+                        "lhl": { 
+                            text: "結果5: Bが70以上で、AとCが70未満です。", 
+                            image: "image/result5.jpg", 
+                            sound: "sound/result5.mp3" 
+                        },
 
-                                "lhh": { 
-                                    text: "結果6: BとCが70以上で、Aが70未満です。", 
-                                    image: "image/result6.jpg", 
-                                    sound: "sound/result6.mp3" 
-                                },
+                        "lhh": { 
+                            text: "結果6: BとCが70以上で、Aが70未満です。", 
+                            image: "image/result6.jpg", 
+                            sound: "sound/result6.mp3" 
+                        },
 
-                                "llh": { 
-                                    text: "結果7: Cが70以上で、AとBが70未満です。", 
-                                    image: "image/result7.jpg", 
-                                    sound: "sound/result7.mp3" 
-                                },
+                        "llh": { 
+                            text: "結果7: Cが70以上で、AとBが70未満です。", 
+                            image: "image/result7.jpg", 
+                            sound: "sound/result7.mp3" 
+                        },
 
-                                "hhh": { 
-                                    text: "結果8: A、B、Cすべてが70以上です！", 
-                                    image: "image/result8.jpg", 
-                                    sound: "sound/result8.mp3" 
-                                }
-                            };
-
-                            // 条件キーを作成
-                            let key = "";
-                            if (points.A === 0 && points.B === 0 && points.C === 0) key = "000";
-                            else if (points.A === 100 && points.B === 100 && points.C === 100) key = "100100100";
-                            else key =
-                                (points.A >= 70 ? "h" : "l") +
-                                (points.B >= 70 ? "h" : "l") +
-                                (points.C >= 70 ? "h" : "l");
-
-                            // 結果を取得
-                            const result = results[key] || { 
-                                text: "エラー: 開発者の想像していない結果です！"
-                            };
-
-                            // 結果を表示
-                            resultElement.innerHTML = 
-                                `
-                                    <p>
-                                        ${result.text}
-                                    </p>
-                                    
-                                    <img src="${result.image}" alt="結果画像">
-                                `;
-
-                            // サウンドを再生
-                            soundElement.src = result.sound;
-                            soundElement.play();
-
+                        "hhh": { 
+                            text: "結果8: A、B、Cすべてが70以上です！", 
+                            image: "image/result8.jpg", 
+                            sound: "sound/result8.mp3" 
                         }
-            );
+                    };
+
+                    // 条件キーを作成
+                    let key = "";
+                    if (points.A === 0 && points.B === 0 && points.C === 0) key = "000";
+                    else if (points.A === 100 && points.B === 100 && points.C === 100) key = "100100100";
+                    else key =
+                        (points.A >= 70 ? "h" : "l") +
+                        (points.B >= 70 ? "h" : "l") +
+                        (points.C >= 70 ? "h" : "l");
+
+                    // 結果を取得
+                    const result = results[key] || { 
+                        text: "エラー: 開発者の想像していない結果です！"
+                    };
+
+                    // 結果を表示
+                    resultElement.innerHTML = 
+                        `
+                            <p>
+                                ${result.text}
+                            </p>
+                            
+                            <img src="${result.image}" alt="結果画像">
+                        `;
+
+                    // サウンドを再生
+                    soundElement.src = result.sound;
+                    soundElement.play();
+
+                });
 
             function resetGame() 
                 {
