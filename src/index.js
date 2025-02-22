@@ -33,8 +33,8 @@ const images = [
     "before1.jpg",
     "before2.jpg",
     "before3.jpg",
-    "before4.jpg",
-    "before5.jpg",
+    "before4.jpeg",
+    "before5.jpeg",
     "before6.jpg",
     "before7.jpg",
     "before8.jpg"
@@ -51,7 +51,7 @@ const options = [
             bPoints: 0,
             cPoints: 0,
             message: "選択肢Aを選びました！",
-            imageAfter: "image/afterA1.jpg"
+            imageAfter: "../image/afterA1.jpg"
         },
         // 選択肢B
         {
@@ -60,7 +60,7 @@ const options = [
             bPoints: 0,
             cPoints: 0,
             message: "選択肢Bを選びました！",
-            imageAfter: "image/afterB1.jpg"
+            imageAfter: "../image/afterB1.jpg"
         },
         // 選択肢C
         {
@@ -69,7 +69,7 @@ const options = [
             bPoints: 10,
             cPoints: 10,
             message: "選択肢Cを選びました！",
-            imageAfter: "image/afterC1.jpg"
+            imageAfter: "../image/afterC1.jpg"
         }
     ],
 
@@ -82,7 +82,7 @@ const options = [
             bPoints: 5,
             cPoints: 0,
             message: "選択肢Aを選びました！",
-            imageAfter: "image/afterA2.jpg"
+            imageAfter: "../image/afterA2.jpg"
         },
         // 選択肢B
         {
@@ -91,7 +91,7 @@ const options = [
             bPoints: 0,
             cPoints: 0,
             message: "選択肢Bを選びました！",
-            imageAfter: "image/afterB2.jpg"
+            imageAfter: "../image/afterB2.jpg"
         },
         // 選択肢C
         {
@@ -100,7 +100,7 @@ const options = [
             bPoints: 10,
             cPoints: 10,
             message: "選択肢Cを選びました！",
-            imageAfter: "image/afterC2.jpg"
+            imageAfter: "../image/afterC2.jpg"
         }
     ],
 
@@ -113,7 +113,7 @@ const options = [
             bPoints: 10,
             cPoints: 15,
             message: "選択肢Aを選びました！",
-            imageAfter: "image/afterA3.jpg"
+            imageAfter: "../image/afterA3.jpg"
         },
         // 選択肢B
         {
@@ -122,7 +122,7 @@ const options = [
             bPoints: 0,
             cPoints: 0,
             message: "選択肢Bを選びました！",
-            imageAfter: "image/afterB3.jpg"
+            imageAfter: "../image/afterB3.jpg"
         },
         // 選択肢C
         {
@@ -131,7 +131,7 @@ const options = [
             bPoints: 0,
             cPoints: 0,
             message: "選択肢Cを選びました！",
-            imageAfter: "image/afterC3.jpg"
+            imageAfter: "../image/afterC3.jpg"
         }
     ],
 
@@ -144,7 +144,7 @@ const options = [
             bPoints: 5,
             cPoints: 5,
             message: "選択肢Aを選びました！",
-            imageAfter: "image/afterA4.jpg"
+            imageAfter: "../image/afterA4.jpg"
         },
         // 選択肢B
         {
@@ -153,7 +153,7 @@ const options = [
             bPoints: 5,
             cPoints: 0,
             message: "選択肢Bを選びました！",
-            imageAfter: "image/afterB4.jpg"
+            imageAfter: "../image/afterB4.jpg"
         },
         // 選択肢C
         {
@@ -162,7 +162,7 @@ const options = [
             bPoints: 10,
             cPoints: 0,
             message: "選択肢Cを選びました！",
-            imageAfter: "image/afterC4.jpg"
+            imageAfter: "../image/afterC4.jpg"
         }
     ],
 
@@ -175,7 +175,7 @@ const options = [
             bPoints: 10,
             cPoints: 10,
             message: "選択肢Aを選びました！",
-            imageAfter: "image/afterA5.jpg"
+            imageAfter: "../image/afterA5.jpeg"
         },
         // 選択肢B
         {
@@ -184,7 +184,7 @@ const options = [
             bPoints: 0,
             cPoints: 5,
             message: "選択肢Bを選びました！",
-            imageAfter: "image/afterB5.jpg"
+            imageAfter: "../image/afterB5.jpeg"
         },
         // 選択肢C
         {
@@ -193,7 +193,7 @@ const options = [
             bPoints: 0,
             cPoints: 0,
             message: "選択肢Cを選びました！",
-            imageAfter: "image/afterC5.jpg"
+            imageAfter: "../image/afterC5.jpeg"
         }
     ],
 
@@ -206,7 +206,7 @@ const options = [
             bPoints: 5,
             cPoints: 5,
             message: "選択肢Aを選びました！",
-            imageAfter: "image/afterA6.jpg"
+            imageAfter: "../image/afterA6.jpg"
         },
         // 選択肢B
         {
@@ -215,7 +215,7 @@ const options = [
             bPoints: 10,
             cPoints: 15,
             message: "選択肢Bを選びました！",
-            imageAfter: "image/afterB6.jpg"
+            imageAfter: "../image/afterB6.jpg"
         },
         // 選択肢C
         {
@@ -224,7 +224,7 @@ const options = [
             bPoints: 10,
             cPoints: 10,
             message: "選択肢Cを選びました！",
-            imageAfter: "image/afterC6.jpg"
+            imageAfter: "../image/afterC6.jpg"
         }
     ],
 
@@ -237,7 +237,7 @@ const options = [
             bPoints: 5,
             cPoints: 5,
             message: "選択肢Aを選びました！",
-            imageAfter: "image/afterA7.jpg"
+            imageAfter: "../image/afterA7.jpg"
         },
         // 選択肢B
         {
@@ -246,7 +246,7 @@ const options = [
             bPoints: 10,
             cPoints: 5,
             message: "選択肢Bを選びました！",
-            imageAfter: "image/afterB7.jpg"
+            imageAfter: "../image/afterB7.jpg"
         },
         // 選択肢C
         {
@@ -255,7 +255,7 @@ const options = [
             bPoints: 5,
             cPoints: 5,
             message: "選択肢Cを選びました！",
-            imageAfter: "image/afterC7.jpg"
+            imageAfter: "../image/afterC7.jpg"
         }
     ],
 
@@ -268,7 +268,7 @@ const options = [
             bPoints: -100,
             cPoints: -100,
             message: "選択肢Aを選びました！",
-            imageAfter: "image/afterA8.jpg"
+            imageAfter: "../image/afterA8.jpg"
         },
         // 選択肢B
         {
@@ -277,7 +277,7 @@ const options = [
             bPoints: -10,
             cPoints: -10,
             message: "選択肢Bを選びました！",
-            imageAfter: "image/afterB8.jpg"
+            imageAfter: "../image/afterB8.jpg"
         },
         // 選択肢C
         {
@@ -286,7 +286,7 @@ const options = [
             bPoints: 10,
             cPoints: 10,
             message: "選択肢Cを選びました！",
-            imageAfter: "image/afterC8.jpg"
+            imageAfter: "../image/afterC8.jpg"
         }
     ]
 ];
