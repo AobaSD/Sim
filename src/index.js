@@ -30,14 +30,14 @@ const questions = [
 
 // 画像：初期で出る画像
 const images = [
-    "before1.jpg",
-    "before2.jpg",
-    "before3.jpg",
-    "before4.jpeg",
-    "before5.jpeg",
-    "before6.jpg",
-    "before7.jpg",
-    "before8.jpg"
+    "../image/before1.jpg",
+    "../image/before2.jpg",
+    "../image/before3.jpg",
+    "../image/before4.jpeg",
+    "../image/before5.jpeg",
+    "../image/before6.jpg",
+    "../image/before7.jpg",
+    "../image/before8.jpg"
 ];
 
 // 選択肢：選択肢の名称と、出てくる画像たち
