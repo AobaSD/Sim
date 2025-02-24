@@ -45,7 +45,7 @@
 			}
 
             h1 {
-                padding-top: 20px;
+                padding-top: 50px;
             }
 		</style>
 	</head>
@@ -205,19 +205,16 @@
 
                 // 条件キーを作成
                 let key = "";
-                if (points.A === 0 && points.B === 0 && points.C === 0) key = "000";
-                else if (points.A === 100 && points.B === 100 && points.C === 100) key = "100100100";
-				// 数値指定を追加する場合はここに！
-                else key = 
-                    (points.A >= 70 ? "h" : "l") +
-                    (points.B >= 70 ? "h" : "l") +
-                    (points.C >= 70 ? "h" : "l");
+                if (points.A >= 100 && points.B >= 100 && points.C >= 100) key = "100100100";
+                else if (points.A <= 0 && points.B <= 0 && points.C <= 0) key = "000";
+                else key =
+                        (points.A >= 70 ? "h" : "l") +
+                        (points.B >= 70 ? "h" : "l") +
+                        (points.C >= 70 ? "h" : "l");
 
                 // 結果を取得
-                const result = results[key] || { 
-                    text: "その他の条件に該当しました。", 
-                    image: "../image/default.jpg",
-                    sound: "sound/default.mp3" 
+                const result = results[key] || {
+                    text: "エラー: 開発者の想像していない結果です！"
                 };
 				// 以上、ネスト解消場所
 
@@ -228,6 +225,10 @@
 				soundElement.src = result.sound;
 				soundElement.play();
 			});
+
+            function resetGame() {
+                location.href = '../src/index.html';
+            }
 		</script>
 	</body>
 </html>

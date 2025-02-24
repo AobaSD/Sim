@@ -188,13 +188,13 @@
 
                     const results = {
                         "000": { 
-                            text: "特別な結果: すべての数値が0です！",
+                            text: "[特別な結果1]告白した瞬間、彼は失神して死んでしまった...。",
                             image: "../image/special_zero.jpg",
                             sound: "sound/special_zero.mp3" 
                         },
 
                         "100100100": { 
-                            text: "特別な結果: すべての数値が100です！", 
+                            text: "[特別な結果2]告白した瞬間、彼は強く抱きしめてくれた。",
                             image: "../image/special_max.jpg",
                             sound: "sound/special_max.mp3" 
                         },
@@ -260,12 +260,12 @@
 
                     // 条件キーを作成
                     let key = "";
-                    if (points.A === 0 && points.B === 0 && points.C === 0) key = "000";
-                    else if (points.A === 100 && points.B === 100 && points.C === 100) key = "100100100";
+                    if (points.A >= 100 && points.B >= 100 && points.C >= 100) key = "100100100";
+                    else if (points.A <= 0 && points.B <= 0 && points.C <= 0) key = "000";
                     else key =
-                        (points.A >= 70 ? "h" : "l") +
-                        (points.B >= 70 ? "h" : "l") +
-                        (points.C >= 70 ? "h" : "l");
+                            (points.A >= 70 ? "h" : "l") +
+                            (points.B >= 70 ? "h" : "l") +
+                            (points.C >= 70 ? "h" : "l");
 
                     // 結果を取得
                     const result = results[key] || { 
@@ -278,7 +278,7 @@
                             <p>
                                 ${result.text}
                             </p>
-                            
+
                             <img src="${result.image}" alt="結果画像">
                         `;
 
