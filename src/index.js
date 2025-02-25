@@ -36,8 +36,8 @@ const images = [
     "../image/before4.jpeg",
     "../image/before5.jpeg",
     "../image/before6.jpg",
-    "../image/before7.jpg",
-    "../image/before8.jpg"
+    "../image/before7.webp",
+    "../image/before8.jpeg"
 ];
 
 // 選択肢：選択肢の名称と、出てくる画像たち
@@ -206,7 +206,7 @@ const options = [
             bPoints: 5,
             cPoints: 5,
             message: "選択肢Aを選びました！",
-            imageAfter: "../image/afterA6.jpg"
+            imageAfter: "../image/before6.jpg"
         },
         // 選択肢B
         {
@@ -215,7 +215,7 @@ const options = [
             bPoints: 10,
             cPoints: 15,
             message: "選択肢Bを選びました！",
-            imageAfter: "../image/afterB6.jpg"
+            imageAfter: "../image/before6.jpg"
         },
         // 選択肢C
         {
@@ -224,7 +224,7 @@ const options = [
             bPoints: 10,
             cPoints: 10,
             message: "選択肢Cを選びました！",
-            imageAfter: "../image/afterC6.jpg"
+            imageAfter: "../image/before6.jpg"
         }
     ],
 
@@ -237,7 +237,7 @@ const options = [
             bPoints: 5,
             cPoints: 5,
             message: "選択肢Aを選びました！",
-            imageAfter: "../image/afterA7.jpg"
+            imageAfter: "../image/afterA7.jpeg"
         },
         // 選択肢B
         {
@@ -277,7 +277,7 @@ const options = [
             bPoints: -10,
             cPoints: -10,
             message: "選択肢Bを選びました！",
-            imageAfter: "../image/afterB8.jpg"
+            imageAfter: "../image/afterB8.jpeg"
         },
         // 選択肢C
         {
@@ -286,7 +286,7 @@ const options = [
             bPoints: 10,
             cPoints: 10,
             message: "選択肢Cを選びました！",
-            imageAfter: "../image/afterC8.jpg"
+            imageAfter: "../image/afterC8.jpeg"
         }
     ]
 ];
