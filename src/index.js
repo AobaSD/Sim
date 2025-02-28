@@ -1,3 +1,5 @@
+/* <!-- Project Simulation: Version 5.0.0 2025/2/28 実装 --> */
+
 // ポイント管理（初期値）
 let points = { A: 0, B: 0, C: 0 };
 let currentScreenIndex = 0;
@@ -79,8 +81,8 @@ const options = [
         {
             text: "「だから何？」",
             aPoints: 0,
-            bPoints: 5,
-            cPoints: 0,
+            bPoints: -5,
+            cPoints: 10,
             message: "とても気まずい雰囲気になった。",
             imageAfter: "../image/afterA2.jpg"
         },
@@ -96,9 +98,9 @@ const options = [
         // 選択肢C
         {
             text: "「久しぶりに会えて嬉しかったよ」",
-            aPoints: 15,
-            bPoints: 15,
-            cPoints: 10,
+            aPoints: 10,
+            bPoints: 10,
+            cPoints: 5,
             message: "二人はとても楽しく話した。",
             imageAfter: "../image/afterC2.jpg"
         }
@@ -109,8 +111,8 @@ const options = [
         // 選択肢A
         {
             text: "映画館",
-            aPoints: 5,
-            bPoints: 10,
+            aPoints: 10,
+            bPoints: 15,
             cPoints: 15,
             message: "何をみようかな〜、、",
             imageAfter: "../image/afterA3.jpg"
@@ -118,18 +120,18 @@ const options = [
         // 選択肢B
         {
             text: "遊園地",
-            aPoints: 5,
-            bPoints: 5,
-            cPoints: 5,
+            aPoints: 10,
+            bPoints: 10,
+            cPoints: 10,
             message: "ディズニー、よみうりランド、色々あるけど、どこがいいかな",
             imageAfter: "../image/afterB3.jpg"
         },
         // 選択肢C
         {
             text: "おうち",
-            aPoints: 15,
+            aPoints: 20,
             bPoints: 0,
-            cPoints: 0,
+            cPoints: -15,
             message: "やっぱりデートと言えば、家に限る！",
             imageAfter: "../image/afterC3.jpg"
         }
@@ -140,8 +142,8 @@ const options = [
         // 選択肢A
         {
             text: "ジャージ（全身）",
-            aPoints: 0,
-            bPoints: 5,
+            aPoints: -30,
+            bPoints: 0,
             cPoints: 5,
             message: "やっぱり着慣れた格好が一番だよね",
             imageAfter: "../image/afterA4.jpg"
@@ -149,9 +151,9 @@ const options = [
         // 選択肢B
         {
             text: "オフショル& ショートパンツ",
-            aPoints: 10,
-            bPoints: 5,
-            cPoints: 0,
+            aPoints: 40,
+            bPoints: 10,
+            cPoints: -5,
             message: "ちょっと露出が激しいかも、？",
             imageAfter: "../image/afterB4.jpg"
         },
@@ -160,7 +162,7 @@ const options = [
             text: "ロングスカート& カーディガン",
             aPoints: 15,
             bPoints: 10,
-            cPoints: 0,
+            cPoints: 15,
             message: "可愛く見えるかな？",
             imageAfter: "../image/afterC4.jpg"
         }
@@ -171,18 +173,18 @@ const options = [
         // 選択肢A
         {
             text: "イタリアン",
-            aPoints: 10,
-            bPoints: 10,
-            cPoints: 10,
+            aPoints: 15,
+            bPoints: 15,
+            cPoints: 15,
             message: "少し緊張するな...",
             imageAfter: "../image/afterA5.jpeg"
         },
         // 選択肢B
         {
             text: "ファストフード",
-            aPoints: 0,
-            bPoints: 0,
-            cPoints: 5,
+            aPoints: -5,
+            bPoints: -5,
+            cPoints: 0,
             message: "行き慣れてる場所が一番だよね！",
             imageAfter: "../image/afterB5.jpeg"
         },
@@ -190,8 +192,8 @@ const options = [
         {
             text: "ラーメン",
             aPoints: 10,
-            bPoints: 0,
-            cPoints: 0,
+            bPoints: 10,
+            cPoints: 10,
             message: "コッテリ系にしようかな",
             imageAfter: "../image/afterC5.jpeg"
         }
@@ -202,18 +204,18 @@ const options = [
         // 選択肢A
         {
             text: "奢ってもらう",
-            aPoints: 5,
-            bPoints: 5,
-            cPoints: 5,
+            aPoints: 15,
+            bPoints: -5,
+            cPoints: -5,
             message: "少し申し訳ないけど...男の子が奢って当然だよね！",
             imageAfter: "../image/before6.jpg"
         },
         // 選択肢B
         {
             text: "割り勘",
-            aPoints: 10,
+            aPoints: 5,
             bPoints: 10,
-            cPoints: 15,
+            cPoints: 20,
             message: "平等に行くのが一番いいかな",
             imageAfter: "../image/before6.jpg"
         },
@@ -221,7 +223,7 @@ const options = [
         {
             text: "奢る",
             aPoints: 10,
-            bPoints: 10,
+            bPoints: 15,
             cPoints: 10,
             message: "ここは私が！",
             imageAfter: "../image/before6.jpg"
@@ -233,7 +235,7 @@ const options = [
         // 選択肢A
         {
             text: "公園に行く",
-            aPoints: 5,
+            aPoints: -5,
             bPoints: 5,
             cPoints: 5,
             message: "近所の公園とはいえど、幻想的...?だからね！",
@@ -243,17 +245,17 @@ const options = [
         {
             text: "海辺をおさんぽ",
             aPoints: 10,
-            bPoints: 10,
-            cPoints: 5,
+            bPoints: 15,
+            cPoints: 10,
             message: "海風を感じる。夕日がとてもいい感じ。",
             imageAfter: "../image/afterB7.jpg"
         },
         // 選択肢C
         {
             text: "夜景を見に行く",
-            aPoints: 10,
-            bPoints: 5,
-            cPoints: 5,
+            aPoints: 15,
+            bPoints: 15,
+            cPoints: 10,
             message: "とても綺麗な夜景を見にいった。",
             imageAfter: "../image/afterC7.jpg"
         }
@@ -264,7 +266,7 @@ const options = [
         // 選択肢A
         {
             text: "あなたのすべてを、一つ残らず食べ尽くしたいな。あなたが私の一部になる瞬間を、ずっと想像しているの....。",
-            aPoints: -100,
+            aPoints: 30,
             bPoints: -100,
             cPoints: -100,
             message: "まずい！石橋くんが泡を吹いてる！",
@@ -273,18 +275,18 @@ const options = [
         // 選択肢B
         {
             text: "私と結婚してください",
-            aPoints: -10,
-            bPoints: -10,
-            cPoints: -10,
-            message: "私の思いは本気よ！！",
+            aPoints: 20,
+            bPoints: 15,
+            cPoints: 10,
+            message: "彼は少し微笑んだ。そして...",
             imageAfter: "../image/afterB8.jpeg"
         },
         // 選択肢C
         {
             text: "好きです、付き合ってください！",
-            aPoints: 15,
-            bPoints: 15,
-            cPoints: 15,
+            aPoints: 5,
+            bPoints: 20,
+            cPoints: 20,
             message: "王道の告白だけど、想いは伝わるかな...?",
             imageAfter: "../image/afterC8.jpeg"
         }

@@ -1,5 +1,6 @@
 # 必要な素材
 
+Project Simulation: Version 5.0.0 2025/2/28 実装
 ## 画像
 ### 共通部分
 - タイトル画面
