@@ -407,7 +407,7 @@ function goToNextScreen(nextScreen) {
 // ゲームリセット
 function resetGame() {
     points = { A: 0, B: 0, C: 0 };
-    renderScreen(0);
+    location.href = '../src/index.html';
 }
 
 document.addEventListener("DOMContentLoaded", function() {
